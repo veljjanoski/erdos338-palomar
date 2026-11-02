@@ -7,8 +7,9 @@ public import Erdos338.Structure
 
 For `γ > 0` there is `K` such that every `M ⊆ ℕ` with `γ b ≤ |M ∩ [0, b)|` for all large `b` has
 `d ≤ K` and `b₀` such that every `K b₀ + d x` with `x` large is a sum of exactly `K` elements of
-`M` (`usl`). Here `b₀ ∈ M` and `d` is the greatest common divisor of the differences `x - b₀`,
-`x ∈ M`; the set `E = {y | b₀ + d y ∈ M}` then satisfies the hypotheses of `cover`.
+`M` (`usl`). Here `b₀` is any element of `M` and `d` is the greatest common divisor of the
+differences `x - b₀` with `x ∈ M`, `x ≥ b₀`; the set `E = {y | b₀ + d y ∈ M}` then satisfies the
+hypotheses of `cover`.
 -/
 
 @[expose] public section

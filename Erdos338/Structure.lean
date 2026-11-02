@@ -131,8 +131,8 @@ lemma dense_step {γ : ℝ} (hγ : 0 < γ) {h : ℕ} (hh : (4 / γ : ℝ) < h) {
   simp only [hA, mem_filter] at this
   exact this.2
 
-/-- A set of lower density at least `γ` has an element in `(y, C y]` for all large `y`, once
-`2 / γ ≤ C`. -/
+/-- A set `E` with `γ b ≤ |E ∩ [0, b)|` for all large `b` has an element in `(y, C y]` for all
+large `y`, once `2 / γ ≤ C`. -/
 lemma exists_mem_Ioc {γ : ℝ} (hγ : 0 < γ) {C : ℕ} (hC : (2 / γ : ℝ) ≤ C) {E : Set ℕ} {N : ℕ}
     (hN : ∀ b ≥ N, γ * b ≤ cnt E b) {y : ℕ} (hyN : N ≤ y) (hy2 : 2 ≤ y) :
     ∃ ℓ ∈ E, y < ℓ ∧ ℓ ≤ C * y := by

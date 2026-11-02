@@ -8,11 +8,12 @@ public import Erdos338.Shift
 # Assembly
 
 `restricted_of_density`: if every residue class modulo every `Q ≥ 1` contains a sum of distinct
-elements of `A`, and `A` has lower density at least `δ > 0`, then every large `n` is a sum of a
-bounded number of distinct elements of `A`.
+elements of `A`, and `δ b ≤ |A ∩ [0, b)|` for all large `b` with `δ > 0`, then every large `n` is
+a sum of a bounded number of distinct elements of `A`.
 
 Let `M_R` be the set of numbers with at least `R` representations as a sum of two distinct elements
-of `A`. It has lower density at least `γ = δ ^ 2 / 8` for every `R` (`pairs_dense`), so `usl` gives
+of `A`. For every `R`, `γ b ≤ |M_R ∩ [0, b)|` for all large `b`, with `γ = δ ^ 2 / 8`
+(`pairs_dense`), so `usl` gives
 `K`, independent of `R`, such that all large numbers `≡ K b₀ (mod d)` are sums of `K` elements of
 `M_R`, with `d ≤ K`. Fix the residue mod `d` with a set `S₀` of distinct elements, chosen for the
 modulus `K!` so that `|S₀| ≤ B` with `B` independent of `R`. With `R > 2 (B + 2 K)`, the `K`

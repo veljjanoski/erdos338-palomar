@@ -7,8 +7,9 @@ public import Erdos338.Kneser.Kneser
 # Sums of many copies of a dense finite set
 
 Kneser's theorem for `h` summands, and its consequence for a set `A ⊆ [0, ℓ]` containing `0` and
-`ℓ`: if `A` is not too small, every residue mod `ℓ` is a sum of `h` elements of `A`, and so every
-integer in `[h ℓ, (m - h) ℓ]` is a sum of exactly `m` elements of `A`.
+`ℓ`: if `A` is not too small and its image generates `ZMod ℓ`, every residue mod `ℓ` is a sum of
+`h` elements of `A`, and so every integer in `[h ℓ, (m - h) ℓ]` is a sum of exactly `m` elements
+of `A`.
 -/
 
 @[expose] public section

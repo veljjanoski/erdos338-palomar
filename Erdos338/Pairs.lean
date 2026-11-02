@@ -5,10 +5,11 @@ public import Erdos338.Structure
 /-!
 # Sums of two distinct elements
 
-`rep A m` indexes the ways to write `m = a + (m - a)` with `a, m - a ∈ A` and `a ≠ m - a`. If `A`
-has lower density at least `δ`, then for every `R` the set of `m` with at least `R` such
-representations has lower density at least `δ ^ 2 / 8` (`pairs_dense`). A sum of numbers with many
-representations is a sum of distinct elements of `A` that avoid a given finite set (`greedy`).
+`rep A m` indexes the ways to write `m = a + (m - a)` with `a, m - a ∈ A` and `a ≠ m - a`. If
+`δ b ≤ |A ∩ [0, b)|` for all large `b`, then for every `R` the set of `m` with at least `R` such
+representations satisfies the same with `δ ^ 2 / 8` in place of `δ` (`pairs_dense`). A sum of
+numbers with many representations is a sum of distinct elements of `A` that avoid a given finite
+set (`greedy`).
 -/
 
 @[expose] public section
@@ -83,8 +84,9 @@ lemma pair_count (A : Set ℕ) (R : ℕ) {b L : ℕ} (hL : 2 * L ≤ b) :
   rw [hk]
   omega
 
-/-- If `A` has lower density at least `δ`, then for every `R` the set of numbers with at least `R`
-representations as a sum of two distinct elements of `A` has lower density at least `δ ^ 2 / 8`. -/
+/-- If `δ b ≤ |A ∩ [0, b)|` for all large `b`, then for every `R` the set of numbers with at least
+`R` representations as a sum of two distinct elements of `A` satisfies the same with `δ ^ 2 / 8` in
+place of `δ`. -/
 lemma pairs_dense {δ : ℝ} (hδ : 0 < δ) {A : Set ℕ} {N₀ : ℕ}
     (hN₀ : ∀ b ≥ N₀, δ * b ≤ cnt A b) (R : ℕ) :
     ∃ N, ∀ b ≥ N, δ ^ 2 / 8 * b ≤ cnt {m | R ≤ #(rep A m)} b := by

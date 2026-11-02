@@ -6,7 +6,9 @@ public import Erdos338
 /-!
 # Erdős Problem 338: restricted order of robust sets of positive lower density
 
-Proof of the statement of `Challenge.lean`. The definitions are repeated verbatim.
+Proof of the statement of `Challenge.lean`. The definitions are repeated verbatim from
+`Challenge.lean`, which copies them from formal-conjectures (Apache-2.0, Copyright 2025 and 2026
+The Formal Conjectures Authors).
 
 Let `A` have lower density greater than `δ > 0`, and let `A \ F` be a basis for every finite `F`.
 
@@ -15,9 +17,10 @@ Let `A` have lower density greater than `δ > 0`, and let `A \ F` be a basis for
    contain only finitely many of them, write a number of the given class as a sum of elements of
    what is left, and replace the summands one by one by distinct elements of the same classes.
 2. For every `R`, the set `M_R` of numbers with at least `R` representations `a + b` with
-   `a ≠ b` in `A` has lower density at least `δ ^ 2 / 8` (`Erdos338Proof.pairs_dense`), by
-   counting pairs.
-3. There is `K`, depending only on `δ`, such that every set of lower density at least `δ ^ 2 / 8`
+   `a ≠ b` in `A` satisfies `δ ^ 2 / 8 * b ≤ |M_R ∩ [0, b)|` for all large `b`
+   (`Erdos338Proof.pairs_dense`), by counting pairs.
+3. There is `K`, depending only on `δ`, such that every set `M` with
+   `δ ^ 2 / 8 * b ≤ |M ∩ [0, b)|` for all large `b`
    contains, as sums of exactly `K` of its elements, all large numbers of one residue class
    mod some `d ≤ K` (`Erdos338Proof.usl`). This uses Kneser's theorem for finite abelian groups
    (`Finset.add_kneser`, from Yaël Dillies and Mantas Bakšys) in `ZMod ℓ`; see

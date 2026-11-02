@@ -28,21 +28,22 @@ sources:
     authors:
       - "Daniel Veljjanoski"
     type: "web page"
-    location: "https://github.com/veljjanoski/erdos338"
+    location: "https://github.com/veljjanoski/erdos338 (commit 9429d6f), README.md, Theorem 1 and its Consequences paragraph"
     relationship: "formalizes"
     note: >-
       Theorem 1 there: a set A of lower density delta > 0 whose infinite residue classes generate
       Z/gZ for every g (which holds when A is robust) has restricted order at most 3s - 2 with
       s = ceil(8/delta^2). The Lean statement is the existence part for robust sets. The Lean
-      proof keeps Steps 1 and 4 there (pair counting, disjoint representations). It replaces
-      Step 2, which uses Kneser's theorem on the lower asymptotic density of sumsets (not
-      available in Lean), by an argument with Kneser's theorem for finite abelian groups in Z/lZ
-      for suitable elements l. It replaces Step 3 by a direct argument from robustness: a number
+      proof keeps the arguments of Steps 1 and 4 there (pair counting, with the constant
+      delta^2/8 for ordered pairs; disjoint representations, with the residue fixed for the
+      modulus K! and R = 2(B + 2K) + 1). It replaces Step 2, which uses Kneser's theorem on the
+      lower asymptotic density of sumsets (not in Mathlib), by an argument with Kneser's theorem
+      for finite abelian groups in Z/lZ for suitable elements l. It replaces Step 3 by a direct argument from robustness: a number
       in the required residue class is a sum of elements of A in infinite residue classes, and
       these summands are replaced by distinct elements of the same classes. It does not keep the
       bound 3s - 2.
     license: "MIT"
-    author_endorsement: "n/a"
+    author_endorsement: "participated"
   - title: "Answer to a question by Burr and Erdős on restricted addition, and related results"
     authors:
       - "Norbert Hegyvári"
@@ -59,7 +60,7 @@ sources:
   - title: "Erdős Problem 338"
     type: "web page"
     location: "https://www.erdosproblems.com/338"
-    relationship: "related"
+    relationship: "background"
     note: >-
       States the question of Erdős and Graham (whether every A such that A \ F is a basis for
       every finite F has a restricted order). The Lean statement answers it for sets of positive
@@ -72,9 +73,10 @@ related_formalizations:
     relationship: "builds-on"
     note: >-
       Erdos338.HasOrder and Erdos338.HasRestrictedOrder are copied verbatim from
-      formal-conjectures (Apache-2.0). The hypothesis on A is the one of
-      erdos_338.variants.basis_after_finite_removal there. The statement with positive lower
-      density is not in formal-conjectures.
+      formal-conjectures (Apache-2.0). The robustness hypothesis is the one of
+      erdos_338.variants.basis_after_finite_removal there, and the density hypothesis is written
+      as in erdos_338.variants.kelly_lowerDensity (which is about bases of order 2). This
+      statement is not in formal-conjectures.
   - id: "https://github.com/google-deepmind/formal-conjectures/blob/d995ef5d306637c0a2e489c7e579647168d7df2f/FormalConjecturesForMathlib/Data/Set/Density.lean"
     relationship: "builds-on"
     note: "Set.partialDensity and Set.lowerDensity are copied verbatim."
@@ -90,9 +92,8 @@ status:
   scope: >-
     Formalized: if A \ F is a basis for every finite set F and A has positive lower density,
     then A has a restricted order. Not formalized: the explicit bound 3 ceil(8/delta^2) - 2 of
-    the source; its Theorem 2 (block model); the questions of Problem 338 for sets of lower
-    density 0, and the question whether the restricted order is bounded when all A \ F have the
-    same order.
+    the source; its Theorem 2 (block model); the questions of Problem 338 (including the variant
+    where all A \ F have the same order) for sets of lower density 0.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -119,9 +120,9 @@ automation:
 
 fidelity:
   divergences: >-
-    The statement is new; formal-conjectures has no variant of Problem 338 with a density
-    hypothesis. It uses the formal-conjectures definitions verbatim: positive lower density is
-    0 < A.lowerDensity, and robustness is the hypothesis of
+    The statement is not in formal-conjectures. It uses the formal-conjectures definitions
+    verbatim: positive lower density is 0 < A.lowerDensity, as in
+    erdos_338.variants.kelly_lowerDensity, and robustness is the hypothesis of
     erdos_338.variants.basis_after_finite_removal. Compared with Theorem 1 of the source, the
     bound on the restricted order is not part of the statement, and the residue condition of
     the source is not a hypothesis (the source derives it from robustness; the Lean proof uses
@@ -135,8 +136,9 @@ review:
     The proof is checked by the Lean kernel; #print axioms gives only propext,
     Classical.choice and Quot.sound. A script checked that the theorem and the definitions in
     Challenge.lean and Solution.lean are the same expressions, and the definitions were copied
-    verbatim from formal-conjectures. No human mathematical review of the proof beyond the
-    author's.
+    verbatim from formal-conjectures. An independent AI-agent review checked the statement, the
+    copied definitions and files, and this metadata. No human mathematical review of the proof
+    beyond the author's.
 
 alignment:
   namespace: "Erdos338"

@@ -13,9 +13,13 @@ The statement below answers this positively when $A$ has positive lower density.
 The definitions `Set.partialDensity`, `Set.lowerDensity`, `Erdos338.HasOrder` and
 `Erdos338.HasRestrictedOrder` are copied verbatim from
 [formal-conjectures](https://github.com/google-deepmind/formal-conjectures) (Apache-2.0), files
-`FormalConjecturesForMathlib/Data/Set/Density.lean` and `FormalConjectures/ErdosProblems/338.lean`
-at commit `d995ef5d306637c0a2e489c7e579647168d7df2f`, with the same names. The hypothesis on $A$
-is the one of `Erdos338.erdos_338.variants.basis_after_finite_removal` there.
+`FormalConjecturesForMathlib/Data/Set/Density.lean` (Copyright 2025 The Formal Conjectures
+Authors) and `FormalConjectures/ErdosProblems/338.lean` (Copyright 2026 The Formal Conjectures
+Authors) at commit `d995ef5d306637c0a2e489c7e579647168d7df2f`, with the same names. The first
+(robustness) hypothesis on $A$ is the one of
+`Erdos338.erdos_338.variants.basis_after_finite_removal` there, and the density hypothesis is
+written as in `Erdos338.erdos_338.variants.kelly_lowerDensity`. Here `A.lowerDensity` is the lower
+asymptotic density $\liminf_{b \to \infty} |A \cap [0, b)| / b$.
 
 *References:*
 - [ErGr80] Erdős, P. and Graham, R., *Old and new problems and results in combinatorial number
