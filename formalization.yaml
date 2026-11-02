@@ -1,0 +1,154 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Erdős Problem 338: restricted order of robust sets of positive lower density"
+  description: >-
+    If A \ F is a basis for every finite set F and A has positive lower density, then A has a
+    restricted order: every sufficiently large integer is a sum of a bounded number of distinct
+    elements of A. This is a partial result on Erdős Problem 338 (Erdős and Graham ask whether
+    every such A, without the density condition, has a restricted order). The proof counts
+    pairs to show that, for every R, the numbers with at least R representations as a sum of two
+    distinct elements of A have positive lower density, uniformly in R; uses Kneser's theorem for
+    finite abelian groups to write all large numbers of one residue class as sums of a bounded
+    number of such numbers; fixes the residue class with distinct elements of A; and chooses the
+    representations greedily so that all summands are distinct.
+  authors:
+    - "Daniel Veljjanoski"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Daniel Veljjanoski"
+
+classification:
+  arxiv: ["math.NT", "math.CO"]
+  msc2020: ["11B13", "11B05"]
+
+sources:
+  - title: "Erdős problem #338: partial results on restricted order"
+    authors:
+      - "Daniel Veljjanoski"
+    type: "web page"
+    location: "https://github.com/veljjanoski/erdos338"
+    relationship: "formalizes"
+    note: >-
+      Theorem 1 there: a set A of lower density delta > 0 whose infinite residue classes generate
+      Z/gZ for every g (which holds when A is robust) has restricted order at most 3s - 2 with
+      s = ceil(8/delta^2). The Lean statement is the existence part for robust sets. The Lean
+      proof keeps Steps 1 and 4 there (pair counting, disjoint representations). It replaces
+      Step 2, which uses Kneser's theorem on the lower asymptotic density of sumsets (not
+      available in Lean), by an argument with Kneser's theorem for finite abelian groups in Z/lZ
+      for suitable elements l. It replaces Step 3 by a direct argument from robustness: a number
+      in the required residue class is a sum of elements of A in infinite residue classes, and
+      these summands are replaced by distinct elements of the same classes. It does not keep the
+      bound 3s - 2.
+    license: "MIT"
+    author_endorsement: "n/a"
+  - title: "Answer to a question by Burr and Erdős on restricted addition, and related results"
+    authors:
+      - "Norbert Hegyvári"
+      - "François Hennecart"
+      - "Alain Plagne"
+    type: "article"
+    location: "Combin. Probab. Comput. 16 (2007), 747-756"
+    relationship: "adapts"
+    note: >-
+      The argument that a number with many representations a + b can be written with a and b
+      outside a given finite set, used to make all summands distinct (Erdos338Proof.greedy).
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Erdős Problem 338"
+    type: "web page"
+    location: "https://www.erdosproblems.com/338"
+    relationship: "related"
+    note: >-
+      States the question of Erdős and Graham (whether every A such that A \ F is a basis for
+      every finite F has a restricted order). The Lean statement answers it for sets of positive
+      lower density.
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "https://github.com/google-deepmind/formal-conjectures/blob/d995ef5d306637c0a2e489c7e579647168d7df2f/FormalConjectures/ErdosProblems/338.lean"
+    relationship: "builds-on"
+    note: >-
+      Erdos338.HasOrder and Erdos338.HasRestrictedOrder are copied verbatim from
+      formal-conjectures (Apache-2.0). The hypothesis on A is the one of
+      erdos_338.variants.basis_after_finite_removal there. The statement with positive lower
+      density is not in formal-conjectures.
+  - id: "https://github.com/google-deepmind/formal-conjectures/blob/d995ef5d306637c0a2e489c7e579647168d7df2f/FormalConjecturesForMathlib/Data/Set/Density.lean"
+    relationship: "builds-on"
+    note: "Set.partialDensity and Set.lowerDensity are copied verbatim."
+  - id: "https://github.com/YaelDillies/misc-yd/tree/f2f1d413b681dfd7a0f0e8481aee3ab7e0bae7ba/MiscYD/AddCombi/Kneser"
+    relationship: "builds-on"
+    note: >-
+      MulStab.lean and Kneser.lean (Kneser's theorem for finite abelian groups,
+      Finset.add_kneser, by Mantas Bakšys and Yaël Dillies, Apache-2.0) are copied into
+      Erdos338/Kneser. MulStab.lean is unchanged; Kneser.lean has its import path changed and
+      one induction case renamed for the Mathlib version used here.
+
+status:
+  scope: >-
+    Formalized: if A \ F is a basis for every finite set F and A has positive lower density,
+    then A has a restricted order. Not formalized: the explicit bound 3 ceil(8/delta^2) - 2 of
+    the source; its Theorem 2 (block model); the questions of Problem 338 for sets of lower
+    density 0, and the question whether the restricted order is bounded when all A \ F have the
+    same order.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5 (Anthropic)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-assisted: a Claude Code agent wrote the proof plan, the Lean statement, the Lean proof
+        and the metadata, using lake build and #print axioms; the author chose the target,
+        directed the work and checked the statement and the result.
+      cost:
+        wall_time: "about one day"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: "n/a"
+  spend_usd: "subscription-based"
+  notes: >-
+    The author chose to formalize a partial result the author had posted on erdosproblems.com,
+    and an AI agent wrote the Lean statement and proof under the author's direction. The proof
+    of Kneser's theorem is not AI-written; it is copied from misc-yd.
+
+fidelity:
+  divergences: >-
+    The statement is new; formal-conjectures has no variant of Problem 338 with a density
+    hypothesis. It uses the formal-conjectures definitions verbatim: positive lower density is
+    0 < A.lowerDensity, and robustness is the hypothesis of
+    erdos_338.variants.basis_after_finite_removal. Compared with Theorem 1 of the source, the
+    bound on the restricted order is not part of the statement, and the residue condition of
+    the source is not a hypothesis (the source derives it from robustness; the Lean proof uses
+    robustness directly).
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    The proof is checked by the Lean kernel; #print axioms gives only propext,
+    Classical.choice and Quot.sound. A script checked that the theorem and the definitions in
+    Challenge.lean and Solution.lean are the same expressions, and the definitions were copied
+    verbatim from formal-conjectures. No human mathematical review of the proof beyond the
+    author's.
+
+alignment:
+  namespace: "Erdos338"
+  statements:
+    - source: "Theorem 1 of github.com/veljjanoski/erdos338, existence part, for robust sets"
+      lean: "Erdos338.erdos_338.variants.lowerDensity_pos"
+      module: "Challenge"
+      status: "proved"
+      note: >-
+        A robust set of positive lower density has a restricted order.
+
+acknowledgements: >-
+  Mathlib; formal-conjectures for the definitions; Mantas Bakšys and Yaël Dillies for the Lean
+  proof of Kneser's theorem in misc-yd; erdosproblems.com; Hegyvári, Hennecart and Plagne for
+  the disjoint-representation argument.
