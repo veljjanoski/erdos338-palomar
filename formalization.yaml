@@ -129,16 +129,17 @@ fidelity:
     robustness directly).
 
 review:
-  status: "self-assessed"
+  status: "agent-reviewed"
   reviewers:
-    - "none"
+    - "Claude Opus 5.5 (Anthropic), a separate agent with a fresh context"
   notes: >-
     The proof is checked by the Lean kernel; #print axioms gives only propext,
     Classical.choice and Quot.sound. A script checked that the theorem and the definitions in
     Challenge.lean and Solution.lean are the same expressions, and the definitions were copied
-    verbatim from formal-conjectures. An independent AI-agent review checked the statement, the
-    copied definitions and files, and this metadata. No human mathematical review of the proof
-    beyond the author's.
+    verbatim from formal-conjectures. The reviewer listed above, an AI agent separate from the
+    one that wrote the proof, checked the statement, the copied definitions and files, and this
+    metadata; its findings were fixed before submission. No human mathematical review of the
+    proof beyond the author's.
 
 alignment:
   namespace: "Erdos338"
